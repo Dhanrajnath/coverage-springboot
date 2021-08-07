@@ -88,8 +88,7 @@ public class MultiplexController {
 
 
     @GetMapping("/visitMovies")
-    public String visitMovies(@RequestParam("multiplex_id") int theId) {
-
+    public String visitMovies(@RequestParam("multiplex_id") int theId,Model theModel) {
 
         return "visitMovies";
     }
@@ -97,7 +96,7 @@ public class MultiplexController {
     @GetMapping("/addMovie")
     public String addMovie(){
 
-        return "multiplex/list";
+        return "movies";
     }
 
 

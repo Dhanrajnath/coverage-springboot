@@ -6,71 +6,83 @@
 <head>
 	<title>Save Multiplex</title>
 
-	<link type="text/css"
-		  rel="stylesheet"
-		  href="${pageContext.request.contextPath}/resources/css/style.css">
+	   <!-- reference our style sheet -->
+	       <!-- Required meta tags -->
+           <meta charset="utf-8">
+           <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <style>
-        .error{
-        color:red
-        }
-    </style>
+           <!-- Bootstrap CSS -->
+           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <style>
+
+            .error{
+            color:red
+            }
+
+        </style>
+
+
 
 </head>
 
 <body>
-
-	<div id="wrapper">
-		<div id="header">
-			<h2>Multiplex</h2>
+<br>
+	<div class="form-group">
+	    <div class="container">
+            <div class="header">
+                <h2>Multiplex</h2>
+            </div>
 		</div>
 	</div>
+                    <br>
+                    <br>
+	<div class="form-group">
+	    <div class="container">
+            <h3>Save Multiplex</h3>
 
-	<div id="container">
-		<h3>Save Multiplex</h3>
-
-		<form:form action="addMultiplex" modelAttribute="multiplex" method="POST">
-			<form:hidden path="idMultiplex" />
-
-
-			<table>
-				<tbody>
-					<tr>
-						<td><label>Multiplex Name:</label></td>
-						<td><form:input path="multiplexName" />
-						<form:errors path="multiplexName" cssClass="error"/> </td>
-					</tr>
-
-					<tr>
-						<td><label>Multiplex Rating:</label></td>
-						<td><form:input path="multiplexRating" />
-						<form:errors path="multiplexRating" cssClass="error"/> </td>
-					</tr>
-
-					<tr>
-						<td><label>Multiplex Location:</label></td>
-						<td><form:input path="multiplexLocation" />
-						<form:errors path="multiplexLocation" cssClass="error"/></td>
-					</tr>
-
-					<tr>
-						<td><label></label></td>
-						<td><input type="submit" value="Save" class="save" /></td>
-					</tr>
-
-				</tbody>
-			</table>
+            <form:form action="addMultiplex" modelAttribute="multiplex" method="POST">
+                <form:hidden path="idMultiplex" />
 
 
-		</form:form>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label>Multiplex Name:</label></td>
+                            <td><form:input path="multiplexName" />
+                            <form:errors path="multiplexName" cssClass="error"/> </td>
+                        </tr>
 
-		<div style="clear; both;"></div>
+                        <tr>
+                            <td><label>Multiplex Rating:</label></td>
+                            <td><form:input path="multiplexRating" />
+                            <form:errors path="multiplexRating" cssClass="error"/> </td>
+                        </tr>
 
-		<p>
-			<a href="${pageContext.request.contextPath}/multiplex/list">Back to List</a>
-		</p>
+                        <tr>
+                            <td><label>Multiplex Location:</label></td>
+                            <td><form:input path="multiplexLocation" />
+                            <form:errors path="multiplexLocation" cssClass="error"/></td>
+                        </tr>
 
-	</div>
+                        <tr>
+                            <td><label></label></td>
+                            <td><input type="submit" value="Save" class="save" /></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+            </form:form>
+
+            <div style="clear; both;"></div>
+
+            <p>
+                <a href="${pageContext.request.contextPath}/multiplex/list">Back to List</a>
+            </p>
+
+        </div>
+    </div>
 
 </body>
 

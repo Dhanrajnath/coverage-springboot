@@ -4,73 +4,70 @@
 <html>
 <head>
 	<title>Movie List</title>
-	   <!-- reference our style sheet -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-        <style>
-           html, body{
-           	margin-left:15px; margin-right:15px;
-           	padding:0px;
-           	font-family:Verdana, Arial, Helvetica, sans-serif;
-           }
 
-            th {
-            	border-bottom:1px solid gray;
-            	background:none repeat scroll 0 0 #09c332;
-            	padding:10px;
-            	color: #FFFFFF;
-            }
+                 <meta charset="utf-8">
+                 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-            tr {
-            	border-top:1px solid gray;
-            	text-align:center;
-            }
-        </style>
+                 <!-- Bootstrap CSS -->
+                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
 </head>
 
 <body>
+<div class="jumbotron">
+    <br>
+        <div class="container">
+            <div class="header">
+                <h2>Movie List</h2>
+            </div>
+        </div>
+    <br>
+        <div class="container">
+            <div class="content">
 
-	<div id="wrapper">
-		<div id="header">
-		    <br>
-			<h2>Movie List</h2>
-		</div>
-	</div>
-
-	<div id="container">
-		<div id="content">
-
-      			<br>
-
-                <table>
-                    <tr>
-                        <th>Movie Title</th>
-                        <th>Movie Type</th>
-                        <th>Movie Rating</th>
-                        <th>Action</th>
-                    </tr>
-
-                    <!-- loop over and print our movies -->
-                    <c:forEach var="tempMovie" items="${movies}">
-                         <c:url var="visitLink" value="/multiplex/addMovie">
-                            <c:param name="movie_id" value="${tempMovie.idMovie}" />
-                         </c:url>
-
-                        <tr>
-                            <td> ${tempMovie.movieTitle} </td>
-                            <td> ${tempMovie.movieType} </td>
-                            <td> ${tempMovie.movieRating} </td>
-                            <td> ${tempMovie.addMovie} </td>
-
+                    <br>
+                    <br>
+                    <table class="table table-bordered table-striped table-hover">
+                    <thead class="thead-dark">
+                        <tr class="table-primary">
+                            <th>Movie Title</th>
+                            <th>Movie Type</th>
+                            <th>Movie Rating</th>
+                            <th>Action</th>
                         </tr>
+                    </thead>
 
-                    </c:forEach>
+                        <!-- loop over and print our movies -->
+                        <c:forEach var="tempMovie" items="${movies}">
 
-                </table>
+                             <c:url var="addMovieLink" value="/multiplex/addMovie">
+                                <c:param name="movie_id" value="${tempMovie.idMovie}" />
+                             </c:url>
 
-		</div>
 
-	</div>
+                            <tr>
+                                <td> ${tempMovie.movieTitle} </td>
+                                <td> ${tempMovie.movieType} </td>
+                                <td> ${tempMovie.movieRating} </td>
+
+                                <td>
+                                   <!-- display the update link -->
+                                    <a data-toggle="tooltip" title="add"
+                                    class="btn btn-success btn-sm"
+                                    href="${addMovieLink}">
+                                    Add Movie</a>
+                                   </td>
+
+                            </tr>
+
+                        </c:forEach>
+
+                    </table>
+
+            </div>
+
+        </div>
+    </div>
 </body>
 
 </html>
