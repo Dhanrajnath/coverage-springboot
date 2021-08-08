@@ -1,7 +1,9 @@
 package com.springproject.webapp.service;
 
 import com.springproject.webapp.dao.MultiplexRepository;
+
 import com.springproject.webapp.entity.Multiplex;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,12 @@ public class MultiplexServiceImpl implements MultiplexService{
 
     private MultiplexRepository multiplexRepository;
 
+    private ModelMapper mapper;
+
     @Autowired
-    public MultiplexServiceImpl(MultiplexRepository multiplexRepository) {
+    public MultiplexServiceImpl(MultiplexRepository multiplexRepository, ModelMapper mapper) {
         this.multiplexRepository = multiplexRepository;
+        this.mapper = mapper;
     }
 
     @Override
@@ -47,5 +52,7 @@ public class MultiplexServiceImpl implements MultiplexService{
     public void deleteMultiplexById(int theId) {
         multiplexRepository.deleteById(theId);
     }
+
+
 
 }

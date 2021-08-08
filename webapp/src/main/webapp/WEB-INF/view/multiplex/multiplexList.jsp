@@ -56,9 +56,10 @@
                                 <c:param name="multiplex_id" value="${tempMultiplex.idMultiplex}" />
                               </c:url>
 
-                              <c:url var="visitLink" value="/multiplex/visitMovies">
+                              <c:url var="visitLink" value="/multiplex/visitMovie">
                                 <c:param name="multiplex_id" value="${tempMultiplex.idMultiplex}" />
                               </c:url>
+
 
 
                             <tr>
@@ -71,7 +72,7 @@
                                     <a href="${deleteLink}" class="btn btn-danger btn-sm"
                                     onclick="if (!(confirm('Are you sure you want to delete this multiplex?'))) return false">
                                     Delete</a>
-                                   </td>
+                                </td>
                                 <td>
                                     <a href="${visitLink}" class="btn btn-outline-info" data-toggle="tooltip" title="visit">Visit</a>
                                 </td>

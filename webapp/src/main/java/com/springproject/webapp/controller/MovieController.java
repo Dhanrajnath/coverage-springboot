@@ -1,5 +1,6 @@
 package com.springproject.webapp.controller;
 
+
 import com.springproject.webapp.entity.Movie;
 import com.springproject.webapp.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,6 @@ public class MovieController {
     @PostMapping("/addMovie")
     public String addMovie(@Valid @ModelAttribute("movie") Movie theMovie, BindingResult theBindingResult) {
 
-
         if(theBindingResult.hasErrors())
         {
             System.out.println(theBindingResult.hasErrors());
@@ -85,6 +85,9 @@ public class MovieController {
 
         return "redirect:/movie/list";
     }
+
+
+
 
 
 

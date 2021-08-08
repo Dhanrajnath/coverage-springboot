@@ -1,15 +1,20 @@
 package com.springproject.webapp.controller;
 
+
+import com.springproject.webapp.entity.Movie;
 import com.springproject.webapp.entity.Multiplex;
+import com.springproject.webapp.service.MovieService;
 import com.springproject.webapp.service.MultiplexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
 
 @Controller
 @RequestMapping("/multiplex")
@@ -18,6 +23,8 @@ public class MultiplexController {
     @Autowired
     private MultiplexService multiplexService;
 
+    @Autowired
+    private MovieService movieService;
 
     @GetMapping("/list")
     public String findAll(Model theModel){
@@ -59,7 +66,6 @@ public class MultiplexController {
 
         if(theBindingResult.hasErrors())
         {
-            System.out.println(theBindingResult.hasErrors());
             return "multiplex/multiplexForm";
         }
         else
@@ -77,7 +83,7 @@ public class MultiplexController {
 
 
         if (tempMultiplex == null) {
-            throw new RuntimeException("Employee id not found - " + multiplexId);
+            throw new RuntimeException("id not found - " + multiplexId);
         }
 
         multiplexService.deleteMultiplexById(multiplexId);
@@ -86,18 +92,30 @@ public class MultiplexController {
     }
 
 
+    @GetMapping("/visitMovie")
+    public String visitMovie(Model theModel,@RequestParam("multiplex_id") int theMultiplexId){
 
-    @GetMapping("/visitMovies")
-    public String visitMovies(@RequestParam("multiplex_id") int theId,Model theModel) {
+        List<Movie> theMovies = movieService.findAllMovies();
+        theModel.addAttribute("movies",theMovies);
 
-        return "visitMovies";
+        return "multiplex/movieslist";
     }
+    @GetMapping("/addmovie")
+    public String addMovie(Model theModel, @RequestParam("movie_id") int theId){
 
-    @GetMapping("/addMovie")
-    public String addMovie(){
 
-        return "movies";
+        Movie theMovie = movieService.findMovieById(theId);
+
+        Multiplex theMultiplex = new Multiplex();
+        theMultiplex.addMovie(theMovie);
+
+        theModel.addAttribute("multiplex_movie", theMultiplex);
+
+        System.out.println(theMultiplex.getMovie());
+
+        return "redirect:multiplex/list";
     }
-
 
 }
+
+

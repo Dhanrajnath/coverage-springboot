@@ -25,9 +25,6 @@
         <div class="container">
             <div class="content">
 
-                    <button onclick="window.location.href='showFormForAddMovie'; return false;"
-                           class="btn btn-info btn-lg" data-toggle="tooltip" title="add movie">
-                           Add Movie</button>
 
                     <br>
                     <br>
@@ -44,13 +41,10 @@
                         <!-- loop over and print our movies -->
                         <c:forEach var="tempMovie" items="${movies}">
 
-                             <c:url var="updateLink" value="/movie/showFormForMovieUpdate">
+                             <c:url var="addLink" value="/multiplex/addMovie">
                                 <c:param name="movie_id" value="${tempMovie.idMovie}" />
                              </c:url>
 
-                               <c:url var="deleteLink" value="/movie/deleteMovie">
-                                            <c:param name="movie_id" value="${tempMovie.idMovie}" />
-                                         </c:url>
 
                             <tr>
                                 <td> ${tempMovie.movieTitle} </td>
@@ -58,15 +52,9 @@
                                 <td> ${tempMovie.movieRating} </td>
 
                                 <td>
-                                   <!-- display the update link -->
-                                    <a class="btn btn-success btn-sm"
-                                    href="${updateLink}">
-                                    Update</a>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
                                     <a class="btn btn-danger btn-sm"
-                                    href="${deleteLink}"
-                                    onclick="if (!(confirm('Are you sure you want to delete this movie?'))) return false">
-                                    Delete</a>
+                                    href="${addLink}"
+                                    Add</a>
                                    </td>
 
                             </tr>

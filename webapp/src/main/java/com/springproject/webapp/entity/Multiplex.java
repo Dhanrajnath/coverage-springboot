@@ -2,6 +2,7 @@ package com.springproject.webapp.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -50,6 +51,14 @@ public class Multiplex {
     public Multiplex() {
     }
 
+    public List<Movie> getMovie() {
+        return movieList;
+    }
+
+    public void setMovie(List<Movie> movieList) {
+        this.movieList = movieList;
+    }
+
     public void addMovie(Movie theMovie) {
 
         if (movieList == null) {
@@ -58,5 +67,6 @@ public class Multiplex {
 
         movieList.add(theMovie);
     }
+
 
 }

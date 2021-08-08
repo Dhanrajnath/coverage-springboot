@@ -10,7 +10,7 @@ public interface MovieService {
 
     Movie findMovieById(int theId);
 
-    void saveMovie(Movie theMovie);
-
     void deleteMovieById(int theId);
+
+    void saveMovie(Movie theMovie);
 }

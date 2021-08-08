@@ -1,7 +1,9 @@
 package com.springproject.webapp.service;
 
 import com.springproject.webapp.dao.MovieRepository;
+
 import com.springproject.webapp.entity.Movie;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +13,15 @@ import java.util.Optional;
 @Service
 public class MovieServiceImpl implements MovieService{
 
-    @Autowired
     private MovieRepository movieRepository;
 
+    private ModelMapper mapper;
+
+    @Autowired
+    public MovieServiceImpl(MovieRepository movieRepository, ModelMapper mapper) {
+        this.movieRepository = movieRepository;
+        this.mapper = mapper;
+    }
 
     @Override
     public List<Movie> findAllMovies() {
@@ -38,9 +46,6 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public void saveMovie(Movie theMovie) {
-
-        //id -
-
 
         movieRepository.save(theMovie);
     }

@@ -10,6 +10,24 @@
 
                  <!-- Bootstrap CSS -->
                  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+                 <style>
+                 .button {
+                   border: green;
+                   color: green;
+                   padding: 10px 22px;
+                   text-align: center;
+                   text-decoration: none;
+                   display: inline-block;
+                   font-size: 16px;
+                   margin: 1px 2px;
+                   transition-duration: 0.4s;
+                   cursor: pointer;
+                 }
+                 .button1:hover {
+                   background-color: #4CAF50;
+                   color: white;
+                 }
+                 </style>
 
 </head>
 
@@ -24,6 +42,7 @@
     <br>
         <div class="container">
             <div class="content">
+
 
                     <br>
                     <br>
@@ -40,7 +59,7 @@
                         <!-- loop over and print our movies -->
                         <c:forEach var="tempMovie" items="${movies}">
 
-                             <c:url var="addMovieLink" value="/multiplex/addMovie">
+                             <c:url var="addMovie" value="/multiplex/addMovie">
                                 <c:param name="movie_id" value="${tempMovie.idMovie}" />
                              </c:url>
 
@@ -51,11 +70,9 @@
                                 <td> ${tempMovie.movieRating} </td>
 
                                 <td>
-                                   <!-- display the update link -->
-                                    <a data-toggle="tooltip" title="add"
-                                    class="btn btn-success btn-sm"
-                                    href="${addMovieLink}">
-                                    Add Movie</a>
+                                    <a href="${addMovie}" class="btn btn-info btn-sm"
+                                    onclick="if (!(confirm('Are you sure you want to add this movie?'))) return false">
+                                    Add</a>
                                    </td>
 
                             </tr>
