@@ -60,7 +60,6 @@ public class MovieController {
 
         if(theBindingResult.hasErrors())
         {
-            System.out.println(theBindingResult.hasErrors());
             return "movie/movieForm";
         }
         else

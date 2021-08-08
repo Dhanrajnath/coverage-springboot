@@ -55,10 +55,6 @@ public class Multiplex {
         return movieList;
     }
 
-    public void setMovie(List<Movie> movieList) {
-        this.movieList = movieList;
-    }
-
     public void addMovie(Movie theMovie) {
 
         if (movieList == null) {

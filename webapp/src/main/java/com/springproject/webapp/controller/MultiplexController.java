@@ -95,11 +95,17 @@ public class MultiplexController {
     @GetMapping("/visitMovie")
     public String visitMovie(Model theModel,@RequestParam("multiplex_id") int theMultiplexId){
 
+        Multiplex theMultiplex = multiplexService.findMultiplexById(theMultiplexId);
+        theMultiplex.addMovie(movieService.findMovieById(3));
+        theMultiplex.getMovie();
+//        theModel.addAttribute("multiplex_movie",theMultiplex);
+
         List<Movie> theMovies = movieService.findAllMovies();
         theModel.addAttribute("movies",theMovies);
 
         return "multiplex/movieslist";
     }
+
     @GetMapping("/addmovie")
     public String addMovie(Model theModel, @RequestParam("movie_id") int theId){
 
@@ -108,10 +114,11 @@ public class MultiplexController {
 
         Multiplex theMultiplex = new Multiplex();
         theMultiplex.addMovie(theMovie);
+        theMultiplex.getMovieList();
 
         theModel.addAttribute("multiplex_movie", theMultiplex);
 
-        System.out.println(theMultiplex.getMovie());
+        System.out.println(theMultiplex.getMovieList());
 
         return "redirect:multiplex/list";
     }
