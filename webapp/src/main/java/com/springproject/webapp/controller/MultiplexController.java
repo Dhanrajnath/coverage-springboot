@@ -11,9 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import java.util.ArrayList;
+import java.sql.SQLOutput;
 import java.util.List;
-import java.util.Locale;
 
 
 @Controller
@@ -29,6 +28,7 @@ public class MultiplexController {
     @GetMapping("/list")
     public String findAll(Model theModel){
 
+
         List<Multiplex> theMultiplex = multiplexService.findAllMultiplex();
 
         theModel.addAttribute("multiplex",theMultiplex);
@@ -43,6 +43,9 @@ public class MultiplexController {
         Multiplex theMultiplex = new Multiplex();
         theMultiplex.setIdMultiplex(0);
 
+        List<Movie> theMovies = movieService.findAllMovies();
+        theModel.addAttribute("movies",theMovies);
+
         theModel.addAttribute("multiplex", theMultiplex);
 
         return "multiplex/multiplexForm";
@@ -51,9 +54,11 @@ public class MultiplexController {
     @GetMapping("/showFormForMultiplexUpdate")
     public String showFormForUpdate(@RequestParam("multiplex_id") int theId,
                                     Model theModel) {
+        List<Movie> movies = movieService.findAllMovies();
 
         Multiplex theMultiplex = multiplexService.findMultiplexById(theId);
         theModel.addAttribute("multiplex", theMultiplex);
+        theModel.addAttribute("movies",movies);
 
         // send over to our form
         return "multiplex/multiplexForm";
@@ -61,18 +66,28 @@ public class MultiplexController {
 
 
     @PostMapping("/addMultiplex")
-    public String addMultiplex(@Valid @ModelAttribute("multiplex") Multiplex theMultiplex, BindingResult theBindingResult) {
+    public String addMultiplex(@Valid @ModelAttribute("multiplex") Multiplex theMultiplex, BindingResult theBindingResult,
+                                Model theModel) {
 
 
+//        theMultiplex.addMovie(movieService.findMovieById(1));
+//        System.out.println(theMultiplex.getMovieList());
+//        System.out.println(theMultiplex.getMultiplexName());
         if(theBindingResult.hasErrors())
         {
+            List<Movie> movies = movieService.findAllMovies();
+//            for(Movie theMovie: movies)
+//                System.out.println(theMovie);
+                theModel.addAttribute("movies",movies);
             return "multiplex/multiplexForm";
         }
         else
         {
+
             multiplexService.saveMultiplex(theMultiplex);
             return "redirect:/multiplex/list";
         }
+
     }
 
 
@@ -92,35 +107,12 @@ public class MultiplexController {
     }
 
 
-    @GetMapping("/visitMovie")
-    public String visitMovie(Model theModel,@RequestParam("multiplex_id") int theMultiplexId){
+    @GetMapping("/visitMovies")
+    public String visitMoviesInMultiplex(@RequestParam("movies") Movie theMovie,@RequestParam("multiplex_id") int theId,Model theModel){
 
-        Multiplex theMultiplex = multiplexService.findMultiplexById(theMultiplexId);
-        theMultiplex.addMovie(movieService.findMovieById(3));
-        theMultiplex.getMovie();
-//        theModel.addAttribute("multiplex_movie",theMultiplex);
-
-        List<Movie> theMovies = movieService.findAllMovies();
-        theModel.addAttribute("movies",theMovies);
-
-        return "multiplex/movieslist";
-    }
-
-    @GetMapping("/addmovie")
-    public String addMovie(Model theModel, @RequestParam("movie_id") int theId){
-
-
-        Movie theMovie = movieService.findMovieById(theId);
-
-        Multiplex theMultiplex = new Multiplex();
-        theMultiplex.addMovie(theMovie);
-        theMultiplex.getMovieList();
-
-        theModel.addAttribute("multiplex_movie", theMultiplex);
-
-        System.out.println(theMultiplex.getMovieList());
-
-        return "redirect:multiplex/list";
+        theModel.addAttribute("movies",theMovie);
+        theModel.addAttribute("multiplex_id",theId);
+        return "/multiplex/visitmovies";
     }
 
 }

@@ -4,17 +4,11 @@
 <html>
 
 <head>
-	<title>luv2code Company Home Page</title>
+	<title>Home Page</title>
 </head>
 
 <body>
-	<h2>luv2code Company Home Page</h2>
-	<hr>
-
-	<p>
-	Welcome to the luv2code company home page!
-	</p>
-
+	<h2>Home Page</h2>
 	<hr>
 
 	<!-- display user name and role -->
@@ -30,19 +24,19 @@
 		<!-- Add a link to point to /leaders ... this is for the managers -->
 
 		<p>
-			<a href="${pageContext.request.contextPath}/hotels/list">Hotels list</a>
+			<a href="${pageContext.request.contextPath}/multiplex/list">Multiplex list</a>
 			(Only for Admin peeps)
 		</p>
 
 	</security:authorize>
 
 
-	<security:authorize access="hasRole('HOTEL')">
+	<security:authorize access="hasRole('MOVIE')">
 
 		<!-- Add a link to point to /systems ... this is for the admins -->
 
 		<p>
-			<a href="${pageContext.request.contextPath}/food/list">Food list</a>
+			<a href="${pageContext.request.contextPath}/movie/list">Movie list</a>
 			(Only for hotel peeps)
 		</p>
 

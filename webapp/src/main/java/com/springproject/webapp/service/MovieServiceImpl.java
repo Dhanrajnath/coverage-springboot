@@ -1,12 +1,9 @@
 package com.springproject.webapp.service;
 
 import com.springproject.webapp.dao.MovieRepository;
-
 import com.springproject.webapp.entity.Movie;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -15,12 +12,11 @@ public class MovieServiceImpl implements MovieService{
 
     private MovieRepository movieRepository;
 
-    private ModelMapper mapper;
 
     @Autowired
-    public MovieServiceImpl(MovieRepository movieRepository, ModelMapper mapper) {
+    public MovieServiceImpl(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
-        this.mapper = mapper;
+
     }
 
     @Override
@@ -39,7 +35,7 @@ public class MovieServiceImpl implements MovieService{
         }
         else {
             // we didn't find the employee
-            throw new RuntimeException("Did not find movie with id - "+ theId);
+            throw new RuntimeException("Did not find id - "+ theId);
         }
         return theMovie;
     }

@@ -1,7 +1,9 @@
 package com.springproject.webapp.entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -11,8 +13,7 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "movie")
 public class Movie {
@@ -48,6 +49,7 @@ public class Movie {
             joinColumns=@JoinColumn(name="movie_id"),
             inverseJoinColumns=@JoinColumn(name="multiplex_id")
     )
+    @ToString.Exclude
     private List<Multiplex> multiplexList;
 
 

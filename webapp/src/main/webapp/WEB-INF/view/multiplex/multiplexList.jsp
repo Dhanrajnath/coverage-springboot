@@ -42,7 +42,7 @@
                             <th>Multiplex Rating</th>
                             <th>Multiplex Location</th>
                             <th>Action</th>
-                            <th>Goto</th>
+                            <th>Visit</th>
                         </tr>
                     </thead>
 
@@ -56,10 +56,9 @@
                                 <c:param name="multiplex_id" value="${tempMultiplex.idMultiplex}" />
                               </c:url>
 
-                              <c:url var="visitLink" value="/multiplex/visitMovie">
-                                <c:param name="multiplex_id" value="${tempMultiplex.idMultiplex}" />
-                              </c:url>
-
+                                <c:url var="visitLink" value="/multiplex/visitMovies">
+                                  <c:param name="multiplex_id" value="${tempMultiplex.idMultiplex}" />
+                                </c:url>
 
 
                             <tr>
@@ -67,16 +66,19 @@
                                 <td> ${tempMultiplex.multiplexRating} </td>
                                 <td> ${tempMultiplex.multiplexLocation} </td>
                                 <td>
-                                    <a href="${updateLink}" class="btn btn-success btn-sm">Update</a>
+                                    <a href="${updateLink}" class="btn btn-success btn-sm"
+                                    data-toggle="tooltip" title="update">Update</a>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <a href="${deleteLink}" class="btn btn-danger btn-sm"
+                                    data-toggle="tooltip" title="delete"
                                     onclick="if (!(confirm('Are you sure you want to delete this multiplex?'))) return false">
                                     Delete</a>
                                 </td>
                                 <td>
-                                    <a href="${visitLink}" class="btn btn-outline-info" data-toggle="tooltip" title="visit">Visit</a>
+                                    <a data-toggle="tooltip" title="visit" class="btn btn-info btn-sm"
+                                    href="${visitLink}">
+                                    visit</a>
                                 </td>
-
                             </tr>
 
                         </c:forEach>

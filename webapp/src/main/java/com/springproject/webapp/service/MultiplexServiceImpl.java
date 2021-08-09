@@ -1,9 +1,11 @@
 package com.springproject.webapp.service;
 
+import com.springproject.webapp.dao.MovieRepository;
 import com.springproject.webapp.dao.MultiplexRepository;
 
+
+import com.springproject.webapp.entity.Movie;
 import com.springproject.webapp.entity.Multiplex;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +17,11 @@ public class MultiplexServiceImpl implements MultiplexService{
 
     private MultiplexRepository multiplexRepository;
 
-    private ModelMapper mapper;
+
 
     @Autowired
-    public MultiplexServiceImpl(MultiplexRepository multiplexRepository, ModelMapper mapper) {
+    public MultiplexServiceImpl(MultiplexRepository multiplexRepository) {
         this.multiplexRepository = multiplexRepository;
-        this.mapper = mapper;
     }
 
     @Override
@@ -38,10 +39,19 @@ public class MultiplexServiceImpl implements MultiplexService{
             theMultiplex = result.get();
         }
         else {
-            throw new RuntimeException("Did not find employee id - "+ theId);
+            throw new RuntimeException("Did not find id - "+ theId);
         }
         return theMultiplex;
     }
+
+
+    @Override
+    public Multiplex addMovieInMultiplex(Movie theMovie) {
+        Multiplex theMultiplex = new Multiplex();
+        theMultiplex.addMovie(theMovie);
+        return theMultiplex;
+    }
+
 
     @Override
     public void saveMultiplex(Multiplex theMultiplex) {
