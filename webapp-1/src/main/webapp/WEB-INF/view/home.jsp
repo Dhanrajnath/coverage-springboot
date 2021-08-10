@@ -1,6 +1,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <html>
 
 <head>
@@ -10,54 +13,52 @@
 <body>
 	<h2>luv2code Company Home Page</h2>
 	<hr>
+	
+	<marquee><h3>Welcome to the luv2code company home page!</h3></marquee>
+<br>
+<hr>
+<!-- display user id and role-->
+    <p>
+        User:  <security:authentication property="principal.username" />
+        <br>
+        <br>
+        Role(s):  <security:authentication property="principal.authorities" />
+    </p>
+<hr>
+<br>
 
-	<p>
-	Welcome to the luv2code company home page!
-	</p>
+	<security:authorize access="hasRole('MANAGER')">
 
-	<hr>
+    		<!-- Add a link to point to /leaders ... this is for the managers -->
 
-	<!-- display user name and role -->
+    		<p>
+    			<a href="${pageContext.request.contextPath}/leaders">Leadership Meeting</a>
+    			(Only for Manager peeps)
+    		</p>
 
-	<p>
-		User: <security:authentication property="principal.username" />
-		<br><br>
-		Role(s): <security:authentication property="principal.authorities" />
-	</p>
-
-	<security:authorize access="hasRole('ADMIN')">
-
-		<!-- Add a link to point to /leaders ... this is for the managers -->
-
-		<p>
-			<a href="${pageContext.request.contextPath}/hotels/list">Hotels list</a>
-			(Only for Admin peeps)
-		</p>
-
-	</security:authorize>
-
-
-	<security:authorize access="hasRole('HOTEL')">
-
-		<!-- Add a link to point to /systems ... this is for the admins -->
-
-		<p>
-			<a href="${pageContext.request.contextPath}/food/list">Food list</a>
-			(Only for hotel peeps)
-		</p>
-
-	</security:authorize>
-
-	<hr>
+    	</security:authorize>
 
 
-	<!-- Add a logout button -->
-	<form:form action="${pageContext.request.contextPath}/logout"
-			   method="POST">
+    	<security:authorize access="hasRole('ADMIN')">
 
-		<input type="submit" value="Logout" />
+    		<!-- Add a link to point to /systems ... this is for the admins -->
 
-	</form:form>
+    		<p>
+    			<a href="${pageContext.request.contextPath}/systems">IT Systems Meeting</a>
+    			(Only for Admin peeps)
+    		</p>
+
+    	</security:authorize>
+
+<br>
+    <!-- Add a logout button -->
+    <form:form action="${pageContext.request.contextPath}/logout"
+               method="POST">
+
+          <input data-toggle="tooltip" title="Logout here!" type="submit" value="Logout" />
+
+    </form:form>
+
 
 </body>
 

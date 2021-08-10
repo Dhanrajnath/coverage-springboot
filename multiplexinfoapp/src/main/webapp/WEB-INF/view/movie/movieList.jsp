@@ -10,24 +10,6 @@
 
                  <!-- Bootstrap CSS -->
                  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-                 <style>
-                 .button {
-                   border: green;
-                   color: green;
-                   padding: 10px 22px;
-                   text-align: center;
-                   text-decoration: none;
-                   display: inline-block;
-                   font-size: 16px;
-                   margin: 1px 2px;
-                   transition-duration: 0.4s;
-                   cursor: pointer;
-                 }
-                 .button1:hover {
-                   background-color: #4CAF50;
-                   color: white;
-                 }
-                 </style>
 
 </head>
 
@@ -43,6 +25,9 @@
         <div class="container">
             <div class="content">
 
+                    <button onclick="window.location.href='showFormForAddMovie'; return false;"
+                           class="btn btn-info btn-lg" data-toggle="tooltip" title="add movie">
+                           Add Movie</button>
 
                     <br>
                     <br>
@@ -52,19 +37,36 @@
                             <th>Movie Title</th>
                             <th>Movie Type</th>
                             <th>Movie Rating</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
                         <!-- loop over and print our movies -->
-                        <c:forEach var="tempMovie" items="${multiplex_movie}">
+                        <c:forEach var="tempMovie" items="${movies}">
 
+                             <c:url var="updateLink" value="/movie/showFormForMovieUpdate">
+                                <c:param name="movie_id" value="${tempMovie.idMovie}" />
+                             </c:url>
+
+                               <c:url var="deleteLink" value="/movie/deleteMovie">
+                                            <c:param name="movie_id" value="${tempMovie.idMovie}" />
+                                         </c:url>
 
                             <tr>
                                 <td> ${tempMovie.movieTitle} </td>
                                 <td> ${tempMovie.movieType} </td>
                                 <td> ${tempMovie.movieRating} </td>
-
-
+                                <td>
+                                   <!-- display the update link -->
+                                    <a class="btn btn-success btn-sm"
+                                    href="${updateLink}">
+                                    Update</a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a class="btn btn-danger btn-sm"
+                                    href="${deleteLink}"
+                                    onclick="if (!(confirm('Are you sure you want to delete this movie?'))) return false">
+                                    Delete</a>
+                                   </td>
 
                             </tr>
 

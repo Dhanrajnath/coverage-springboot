@@ -56,7 +56,6 @@
                                 <td> ${tempMovie.movieTitle} </td>
                                 <td> ${tempMovie.movieType} </td>
                                 <td> ${tempMovie.movieRating} </td>
-
                                 <td>
                                    <!-- display the update link -->
                                     <a class="btn btn-success btn-sm"

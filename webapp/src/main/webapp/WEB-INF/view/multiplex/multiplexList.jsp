@@ -41,8 +41,9 @@
                             <th>Multiplex Name</th>
                             <th>Multiplex Rating</th>
                             <th>Multiplex Location</th>
+                            <th>Movies</th>
                             <th>Action</th>
-                            <th>Visit</th>
+                       <!-- <th>Visit</th> -->
                         </tr>
                     </thead>
 
@@ -56,15 +57,22 @@
                                 <c:param name="multiplex_id" value="${tempMultiplex.idMultiplex}" />
                               </c:url>
 
-                                <c:url var="visitLink" value="/multiplex/visitMovies">
+                             <!--   <c:url var="visitLink" value="/multiplex/visitMovies">
                                   <c:param name="multiplex_id" value="${tempMultiplex.idMultiplex}" />
-                                </c:url>
+                                </c:url> -->
 
 
                             <tr>
                                 <td> ${tempMultiplex.multiplexName} </td>
                                 <td> ${tempMultiplex.multiplexRating} </td>
-                                <td> ${tempMultiplex.multiplexLocation} </td>
+                                <td>
+                               ${tempMultiplex.multiplexLocation} </td>
+                                <td>
+                                <c:forEach var="temp" items="${tempMultiplex.movieList}">
+                                        <li> ${temp.movieTitle} </li>
+                                </c:forEach>
+                                </td>
+                             <!--   <td> ${tempMultiplex.movieList} </td> -->
                                 <td>
                                     <a href="${updateLink}" class="btn btn-success btn-sm"
                                     data-toggle="tooltip" title="update">Update</a>
@@ -74,11 +82,11 @@
                                     onclick="if (!(confirm('Are you sure you want to delete this multiplex?'))) return false">
                                     Delete</a>
                                 </td>
-                                <td>
+                           <!--     <td>
                                     <a data-toggle="tooltip" title="visit" class="btn btn-info btn-sm"
                                     href="${visitLink}">
                                     visit</a>
-                                </td>
+                                </td>  -->
                             </tr>
 
                         </c:forEach>

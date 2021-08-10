@@ -1,7 +1,9 @@
 package com.springproject.webapp.service;
 
 import com.springproject.webapp.dao.MovieRepository;
+import com.springproject.webapp.dto.MovieDTO;
 import com.springproject.webapp.entity.Movie;
+import com.springproject.webapp.mapper.MovieMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -25,7 +27,8 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public Movie findMovieById(int theId) {
+    public MovieDTO findMovieById(int theId) {
+
         Optional<Movie> result = movieRepository.findById(theId);
 
         Movie theMovie =null;
@@ -37,13 +40,19 @@ public class MovieServiceImpl implements MovieService{
             // we didn't find the employee
             throw new RuntimeException("Did not find id - "+ theId);
         }
-        return theMovie;
+        return MovieMapper.INSTANCE.EntityToDto(theMovie);
     }
 
     @Override
-    public void saveMovie(Movie theMovie) {
+    public void saveMovie(MovieDTO theMovieDto) {
 
-        movieRepository.save(theMovie);
+        Movie theMovie = MovieMapper.INSTANCE.DtoToEntity(theMovieDto);
+
+        Movie tempMovie = movieRepository.findByMovieTitle(theMovie.getMovieTitle());
+        if(tempMovie != null){
+            movieRepository.save(theMovie);
+        }
+
     }
 
 

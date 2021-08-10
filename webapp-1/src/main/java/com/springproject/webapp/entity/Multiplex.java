@@ -1,7 +1,7 @@
 package com.springproject.webapp.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -11,8 +11,7 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "multiplex")
 public class Multiplex {
@@ -39,6 +38,7 @@ public class Multiplex {
     @Column(name = "multiplex_location")
     private String multiplexLocation;
 
+
     @ManyToMany(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(
@@ -46,12 +46,15 @@ public class Multiplex {
             joinColumns=@JoinColumn(name="multiplex_id"),
             inverseJoinColumns=@JoinColumn(name="movie_id")
     )
+    @ToString.Exclude
     private List<Movie> movieList ;
 
     public Multiplex() {
     }
 
-    public List<Movie> getMovie() {
+    public List<Movie> getMovieList() {
+        // ---
+
         return movieList;
     }
 
@@ -63,6 +66,5 @@ public class Multiplex {
 
         movieList.add(theMovie);
     }
-
 
 }

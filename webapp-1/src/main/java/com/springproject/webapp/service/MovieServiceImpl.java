@@ -35,7 +35,7 @@ public class MovieServiceImpl implements MovieService{
         }
         else {
             // we didn't find the employee
-            throw new RuntimeException("Did not find movie with id - "+ theId);
+            throw new RuntimeException("Did not find id - "+ theId);
         }
         return theMovie;
     }

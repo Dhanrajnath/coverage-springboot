@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import java.sql.SQLOutput;
 import java.util.List;
 
 
@@ -104,15 +103,6 @@ public class MultiplexController {
         multiplexService.deleteMultiplexById(multiplexId);
 
         return "redirect:/multiplex/list";
-    }
-
-
-    @GetMapping("/visitMovies")
-    public String visitMoviesInMultiplex(@RequestParam("movies") Movie theMovie,@RequestParam("multiplex_id") int theId,Model theModel){
-
-        theModel.addAttribute("movies",theMovie);
-        theModel.addAttribute("multiplex_id",theId);
-        return "/multiplex/visitmovies";
     }
 
 }

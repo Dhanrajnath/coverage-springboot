@@ -55,7 +55,9 @@ public class MultiplexServiceImpl implements MultiplexService{
 
     @Override
     public void saveMultiplex(Multiplex theMultiplex) {
-        multiplexRepository.save(theMultiplex);
+        Multiplex tempMultiplex = multiplexRepository.findByMultiplexName(theMultiplex.getMultiplexName());
+        if(tempMultiplex != null)
+            multiplexRepository.save(theMultiplex);
     }
 
     @Override
