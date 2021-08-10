@@ -1,6 +1,7 @@
 package com.springproject.webapp.controller;
 
 
+import com.springproject.webapp.converter.MovieConverter;
 import com.springproject.webapp.dto.MovieDTO;
 import com.springproject.webapp.entity.Movie;
 import com.springproject.webapp.service.MovieService;
@@ -46,7 +47,7 @@ public class MovieController {
     public String showFormForUpdate(@RequestParam("movie_id") int theId,
                                     Model theModel) {
 
-        MovieDTO theMovie = movieService.findMovieById(theId);
+        Movie theMovie = movieService.findMovieById(theId);
 
 
         theModel.addAttribute("movie", theMovie);
@@ -57,7 +58,9 @@ public class MovieController {
 
 
     @PostMapping("/addMovie")
-    public String addMovie(@Valid @ModelAttribute("movie") MovieDTO theMovie, BindingResult theBindingResult) {
+    public String addMovie(@Valid @ModelAttribute("movie") Movie theMovie, BindingResult theBindingResult) {
+
+        theMovie.setIdMovie(0);
 
         if(theBindingResult.hasErrors())
         {
@@ -74,7 +77,7 @@ public class MovieController {
     @GetMapping("/deleteMovie")
     public String deleteMovie(@RequestParam("movie_id") int movieId) {
 
-        MovieDTO tempMovie = movieService.findMovieById(movieId);
+        Movie tempMovie = movieService.findMovieById(movieId);
 
 //        Movie tempMovie = movieService.findMovieById(movieId);
 

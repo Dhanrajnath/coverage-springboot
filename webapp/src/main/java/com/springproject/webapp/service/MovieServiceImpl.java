@@ -1,9 +1,8 @@
 package com.springproject.webapp.service;
 
-import com.springproject.webapp.dao.MovieRepository;
-import com.springproject.webapp.dto.MovieDTO;
+import com.springproject.webapp.dao.MovieJpaRepository;
 import com.springproject.webapp.entity.Movie;
-import com.springproject.webapp.mapper.MovieMapper;
+import com.springproject.webapp.exception.movie.MovieNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -12,24 +11,23 @@ import java.util.Optional;
 @Service
 public class MovieServiceImpl implements MovieService{
 
-    private MovieRepository movieRepository;
+    private MovieJpaRepository movieJpaRepository;
 
 
     @Autowired
-    public MovieServiceImpl(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
+    public MovieServiceImpl(MovieJpaRepository movieJpaRepository) {
+        this.movieJpaRepository = movieJpaRepository;
 
     }
 
     @Override
     public List<Movie> findAllMovies() {
-        return movieRepository.findAll();
+        return movieJpaRepository.findAll();
     }
 
     @Override
-    public MovieDTO findMovieById(int theId) {
-
-        Optional<Movie> result = movieRepository.findById(theId);
+    public Movie findMovieById(int theId) {
+        Optional<Movie> result = movieJpaRepository.findById(theId);
 
         Movie theMovie =null;
 
@@ -37,27 +35,26 @@ public class MovieServiceImpl implements MovieService{
             theMovie = result.get();
         }
         else {
-            // we didn't find the employee
-            throw new RuntimeException("Did not find id - "+ theId);
+            // Exception
+            throw new MovieNotFoundException("Did not find movie with id - "+ theId);
         }
-        return MovieMapper.INSTANCE.EntityToDto(theMovie);
+        return theMovie;
     }
 
     @Override
-    public void saveMovie(MovieDTO theMovieDto) {
+    public void saveMovie(Movie theMovie) {
 
-        Movie theMovie = MovieMapper.INSTANCE.DtoToEntity(theMovieDto);
-
-        Movie tempMovie = movieRepository.findByMovieTitle(theMovie.getMovieTitle());
-        if(tempMovie != null){
-            movieRepository.save(theMovie);
+        Movie tempMovie = movieJpaRepository.findByMovieTitle(theMovie.getMovieTitle());
+        if (tempMovie != null && theMovie.getIdMovie() == 0){
+            return ;
         }
 
+        movieJpaRepository.save(theMovie);
     }
 
 
     @Override
     public void deleteMovieById(int theId) {
-        movieRepository.deleteById(theId);
+        movieJpaRepository.deleteById(theId);
     }
 }
