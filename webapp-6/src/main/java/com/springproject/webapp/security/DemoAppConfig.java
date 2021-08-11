@@ -27,7 +27,7 @@ public class DemoAppConfig
 //	@Autowired
 //	private Environment env;
 
-	// set up a logger for diagnostics
+//	 set up a logger for diagnostics
 
 //	private final Logger logger = Logger.getLogger(getClass().getName());
 
@@ -42,7 +42,7 @@ public class DemoAppConfig
 		return viewResolver;
 	}
 //
-//	// define a bean for our security datasource
+	// define a bean for our security datasource
 //
 //	@Bean
 //	public DataSource securityDataSource() {

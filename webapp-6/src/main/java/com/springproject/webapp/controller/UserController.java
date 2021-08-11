@@ -18,6 +18,11 @@ public class UserController {
     @Autowired
     private MultiplexService multiplexService;
 
+    @GetMapping("/backToHome")
+    public String backToHome(){
+
+        return "home";
+    }
 
     @GetMapping("/showInfo")
     public String display(Model theModel)

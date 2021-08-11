@@ -56,6 +56,9 @@
                         </c:forEach>
                     </table>
             </div>
+            <button onclick="window.location.href='backToHome'; return false;"
+                   class="btn btn-info btn-lg" data-toggle="tooltip" title="back">
+                   back</button>
         </div>
 </div>
 </body>

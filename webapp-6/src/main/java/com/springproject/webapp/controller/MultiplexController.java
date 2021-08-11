@@ -68,7 +68,7 @@ public class MultiplexController {
     public String addMultiplex(@Valid @ModelAttribute("multiplex") Multiplex theMultiplex, BindingResult theBindingResult,
                                 Model theModel) {
 
-        theMultiplex.setIdMultiplex(0);
+
 
 //        theMultiplex.addMovie(movieService.findMovieById(1));
 //        System.out.println(theMultiplex.getMovieList());
@@ -105,6 +105,11 @@ public class MultiplexController {
         return "redirect:/multiplex/list";
     }
 
+    @GetMapping("/backToHome")
+    public String backToHome(){
+
+        return "home";
+    }
 }
 
 

@@ -36,7 +36,7 @@ public class MovieController {
     public String showFormForAdd(Model theModel) {
 
         MovieDTO theMovie = new MovieDTO();
-
+        theMovie.setIdMovie(0);
         theModel.addAttribute("movie", theMovie);
 
         return "movie/movieForm";
@@ -59,7 +59,6 @@ public class MovieController {
     @PostMapping("/addMovie")
     public String addMovie(@Valid @ModelAttribute("movie") Movie theMovie, BindingResult theBindingResult) {
 
-        theMovie.setIdMovie(0);
 
         if(theBindingResult.hasErrors())
         {
@@ -91,6 +90,11 @@ public class MovieController {
     }
 
 
+    @GetMapping("/backToHome")
+    public String backToHome(){
+
+        return "home";
+    }
 
 
 
