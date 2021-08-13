@@ -6,7 +6,6 @@ import com.springproject.webapp.entity.Multiplex;
 import com.springproject.webapp.exception.multiplex.MultiplexNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +37,7 @@ public class MultiplexServiceImpl implements MultiplexService{
         }
         else {
             //Exception
-            throw new MultiplexNotFoundException("Did not find mutliplex with id - "+ theId);
+            throw new MultiplexNotFoundException("Did not find multiplex with id - "+ theId);
         }
         return theMultiplex;
     }

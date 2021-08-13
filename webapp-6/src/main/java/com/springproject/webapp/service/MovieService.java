@@ -14,5 +14,5 @@ public interface MovieService {
 
     void deleteMovieById(int theId);
 
-    void saveMovie(Movie theMovie);
+    void saveMovie(MovieDTO theMovieDto);
 }

@@ -69,15 +69,10 @@ public class MultiplexController {
                                 Model theModel) {
 
 
-
-//        theMultiplex.addMovie(movieService.findMovieById(1));
-//        System.out.println(theMultiplex.getMovieList());
-//        System.out.println(theMultiplex.getMultiplexName());
         if(theBindingResult.hasErrors())
         {
             List<Movie> movies = movieService.findAllMovies();
-//            for(Movie theMovie: movies)
-//                System.out.println(theMovie);
+
                 theModel.addAttribute("movies",movies);
             return "multiplex/multiplexForm";
         }
@@ -95,10 +90,6 @@ public class MultiplexController {
 
         Multiplex tempMultiplex = multiplexService.findMultiplexById(multiplexId);
 
-
-        if (tempMultiplex == null) {
-            throw new RuntimeException("id not found - " + multiplexId);
-        }
 
         multiplexService.deleteMultiplexById(multiplexId);
 

@@ -44,8 +44,9 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public void saveMovie(Movie theMovie) {
-
+    public void saveMovie(MovieDTO theMovieDto) {
+        MovieConverter converter = new MovieConverter();
+        Movie theMovie = converter.dtoToEntity(theMovieDto);
         Movie tempMovie = movieJpaRepository.findByMovieTitle(theMovie.getMovieTitle());
         if (tempMovie != null && theMovie.getIdMovie() == 0){
             return ;

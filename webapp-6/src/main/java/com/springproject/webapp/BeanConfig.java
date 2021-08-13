@@ -9,6 +9,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableAspectJAutoProxy
 public class BeanConfig {
+
     @Bean
     public InternalResourceViewResolver internalResourceViewResolver(){
         InternalResourceViewResolver internalResourceViewResolver=new InternalResourceViewResolver();

@@ -43,7 +43,7 @@ public class WebAppLoggingAspect {
 		// get the arguments
 		Object[] args = theJoinPoint.getArgs();
 		
-		// loop thru and display args
+		// loop and display args
 		for (Object tempArg : args) {
 			myLogger.info("=====>> argument: " + tempArg);
 		}

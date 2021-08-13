@@ -1,8 +1,6 @@
 package com.springproject.webapp.entity;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;

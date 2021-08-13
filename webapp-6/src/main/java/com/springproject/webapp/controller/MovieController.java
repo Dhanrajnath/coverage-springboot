@@ -1,6 +1,5 @@
 package com.springproject.webapp.controller;
 
-
 import com.springproject.webapp.dto.MovieDTO;
 import com.springproject.webapp.entity.Movie;
 import com.springproject.webapp.service.MovieService;
@@ -48,7 +47,6 @@ public class MovieController {
 
         MovieDTO theMovie = movieService.findMovieById(theId);
 
-
         theModel.addAttribute("movie", theMovie);
 
         // send over to our form
@@ -57,8 +55,7 @@ public class MovieController {
 
 
     @PostMapping("/addMovie")
-    public String addMovie(@Valid @ModelAttribute("movie") Movie theMovie, BindingResult theBindingResult) {
-
+    public String addMovie(@Valid @ModelAttribute("movie") MovieDTO theMovieDto, BindingResult theBindingResult) {
 
         if(theBindingResult.hasErrors())
         {
@@ -66,7 +63,7 @@ public class MovieController {
         }
         else
         {
-            movieService.saveMovie(theMovie);
+            movieService.saveMovie(theMovieDto);
             return "redirect:/movie/list";
         }
     }
@@ -76,13 +73,6 @@ public class MovieController {
     public String deleteMovie(@RequestParam("movie_id") int movieId) {
 
         MovieDTO tempMovie = movieService.findMovieById(movieId);
-
-//        Movie tempMovie = movieService.findMovieById(movieId);
-
-
-        if (tempMovie == null) {
-            throw new RuntimeException("Employee id not found - " + movieId);
-        }
 
         movieService.deleteMovieById(movieId);
 
