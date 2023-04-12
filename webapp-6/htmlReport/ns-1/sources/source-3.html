@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > MovieService</title>
+  <title>Coverage Report > MultiplexService</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -21,14 +21,14 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">com.springproject.webapp.service</a>
 </div>
 
-<h1>Coverage Summary for Class: MovieService (com.springproject.webapp.service)</h1>
+<h1>Coverage Summary for Class: MultiplexService (com.springproject.webapp.service)</h1>
 
 <table class="coverageStats">
 <tr>
   <th class="name">Class</th>
 </tr>
 <tr>
-  <td class="name">MovieService</td>
+  <td class="name">MultiplexService</td>
 </tr>
 
 </table>
@@ -40,21 +40,20 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package com.springproject.webapp.service;
 &nbsp;
-&nbsp;
-&nbsp;import com.springproject.webapp.dto.MovieDTO;
 &nbsp;import com.springproject.webapp.entity.Movie;
+&nbsp;import com.springproject.webapp.entity.Multiplex;
 &nbsp;
 &nbsp;import java.util.List;
 &nbsp;
-&nbsp;public interface MovieService {
+&nbsp;public interface MultiplexService {
 &nbsp;
-&nbsp;    List&lt;Movie&gt; findAllMovies();
+&nbsp;    List&lt;Multiplex&gt; findAllMultiplex();
 &nbsp;
-&nbsp;    MovieDTO findMovieById(int theId);
+&nbsp;    Multiplex findMultiplexById(int theId);
 &nbsp;
-&nbsp;    void deleteMovieById(int theId);
+&nbsp;    void saveMultiplex(Multiplex theMultiplex);
 &nbsp;
-&nbsp;    void saveMovie(MovieDTO theMovieDto);
+&nbsp;    void deleteMultiplexById(int theId);
 &nbsp;}
 </code>
 </pre>
@@ -79,7 +78,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-04-12 19:44</div>
+    <div style="float:right;">generated on 2023-04-12 22:03</div>
 </div>
 </body>
 </html>

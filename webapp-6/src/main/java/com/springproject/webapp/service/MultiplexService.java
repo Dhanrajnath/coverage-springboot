@@ -11,8 +11,6 @@ public interface MultiplexService {
 
     Multiplex findMultiplexById(int theId);
 
-    Multiplex addMovieInMultiplex(Movie theMovie);
-
     void saveMultiplex(Multiplex theMultiplex);
 
     void deleteMultiplexById(int theId);

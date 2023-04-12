@@ -43,13 +43,6 @@ public class MultiplexServiceImpl implements MultiplexService{
     }
 
 
-    @Override
-    public Multiplex addMovieInMultiplex(Movie theMovie) {
-        Multiplex theMultiplex = new Multiplex();
-        theMultiplex.addMovie(theMovie);
-        return theMultiplex;
-    }
-
 
     @Override
     public void saveMultiplex(Multiplex theMultiplex) {

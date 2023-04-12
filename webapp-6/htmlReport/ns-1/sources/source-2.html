@@ -40,40 +40,40 @@ Current scope:     <a href="../../index.html">all classes</a>
   <td class="name">MultiplexServiceImpl</td>
 <td class="coverageStat">
   <span class="percent">
-    16.7%
+    100%
   </span>
   <span class="absValue">
-    (1/6)
+    (5/5)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    12.5%
+    100%
   </span>
   <span class="absValue">
-    (2/16)
+    (13/13)
   </span>
 </td>
 </tr>
   <tr>
-    <td class="name">MultiplexServiceImpl$$EnhancerBySpringCGLIB$$371a28df</td>
+    <td class="name">MultiplexServiceImpl$$EnhancerBySpringCGLIB$$943ced49</td>
   </tr>
 <tr>
   <td class="name"><strong>Total</strong></td>
 <td class="coverageStat">
   <span class="percent">
-    16.7%
+    100%
   </span>
   <span class="absValue">
-    (1/6)
+    (5/5)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    12.5%
+    100%
   </span>
   <span class="absValue">
-    (2/16)
+    (13/13)
   </span>
 </td>
 </tr>
@@ -109,49 +109,42 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;    @Override
 &nbsp;    public List&lt;Multiplex&gt; findAllMultiplex() {
-<b class="nc">&nbsp;        return multiplexJpaRepository.findAll();</b>
+<b class="fc">&nbsp;        return multiplexJpaRepository.findAll();</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    @Override
 &nbsp;    public Multiplex findMultiplexById(int theId) {
-<b class="nc">&nbsp;        Optional&lt;Multiplex&gt; result = multiplexJpaRepository.findById(theId);</b>
+<b class="fc">&nbsp;        Optional&lt;Multiplex&gt; result = multiplexJpaRepository.findById(theId);</b>
 &nbsp;
-<b class="nc">&nbsp;        Multiplex theMultiplex =null;</b>
+<b class="fc">&nbsp;        Multiplex theMultiplex =null;</b>
 &nbsp;
-<b class="nc">&nbsp;        if (result.isPresent()){</b>
-<b class="nc">&nbsp;            theMultiplex = result.get();</b>
+<b class="fc">&nbsp;        if (result.isPresent()){</b>
+<b class="fc">&nbsp;            theMultiplex = result.get();</b>
 &nbsp;        }
 &nbsp;        else {
 &nbsp;            //Exception
-<b class="nc">&nbsp;            throw new MultiplexNotFoundException(&quot;Did not find multiplex with id - &quot;+ theId);</b>
+<b class="fc">&nbsp;            throw new MultiplexNotFoundException(&quot;Did not find multiplex with id - &quot;+ theId);</b>
 &nbsp;        }
-<b class="nc">&nbsp;        return theMultiplex;</b>
+<b class="fc">&nbsp;        return theMultiplex;</b>
 &nbsp;    }
 &nbsp;
-&nbsp;
-&nbsp;    @Override
-&nbsp;    public Multiplex addMovieInMultiplex(Movie theMovie) {
-<b class="nc">&nbsp;        Multiplex theMultiplex = new Multiplex();</b>
-<b class="nc">&nbsp;        theMultiplex.addMovie(theMovie);</b>
-<b class="nc">&nbsp;        return theMultiplex;</b>
-&nbsp;    }
 &nbsp;
 &nbsp;
 &nbsp;    @Override
 &nbsp;    public void saveMultiplex(Multiplex theMultiplex) {
-<b class="nc">&nbsp;        Multiplex tempMultiplex = multiplexJpaRepository.findByMultiplexName(theMultiplex.getMultiplexName());</b>
-<b class="nc">&nbsp;        if (tempMultiplex != null &amp;&amp; theMultiplex.getIdMultiplex() == 0){</b>
+<b class="fc">&nbsp;        Multiplex tempMultiplex = multiplexJpaRepository.findByMultiplexName(theMultiplex.getMultiplexName());</b>
+<b class="fc">&nbsp;        if (tempMultiplex != null &amp;&amp; theMultiplex.getIdMultiplex() == 0){</b>
 &nbsp;            return ;
 &nbsp;        }
 &nbsp;
-<b class="nc">&nbsp;            multiplexJpaRepository.save(theMultiplex);</b>
+<b class="fc">&nbsp;            multiplexJpaRepository.save(theMultiplex);</b>
 &nbsp;
 &nbsp;    }
 &nbsp;
 &nbsp;    @Override
 &nbsp;    public void deleteMultiplexById(int theId) {
 &nbsp;
-<b class="nc">&nbsp;        multiplexJpaRepository.deleteById(theId);</b>
+<b class="fc">&nbsp;        multiplexJpaRepository.deleteById(theId);</b>
 &nbsp;    }
 &nbsp;
 &nbsp;
@@ -180,7 +173,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-04-12 19:44</div>
+    <div style="float:right;">generated on 2023-04-12 22:03</div>
 </div>
 </body>
 </html>
