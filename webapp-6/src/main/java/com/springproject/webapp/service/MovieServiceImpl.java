@@ -15,10 +15,12 @@ public class MovieServiceImpl implements MovieService{
 
     private MovieJpaRepository movieJpaRepository;
 
+    private MovieConverter converter;
 
     @Autowired
-    public MovieServiceImpl(MovieJpaRepository movieJpaRepository) {
+    public MovieServiceImpl(MovieJpaRepository movieJpaRepository, MovieConverter movieConverter) {
         this.movieJpaRepository = movieJpaRepository;
+        this.converter = movieConverter;
 
     }
 
@@ -45,7 +47,6 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public void saveMovie(MovieDTO theMovieDto) {
-        MovieConverter converter = new MovieConverter();
         Movie theMovie = converter.dtoToEntity(theMovieDto);
         Movie tempMovie = movieJpaRepository.findByMovieTitle(theMovie.getMovieTitle());
         if (tempMovie != null && theMovie.getIdMovie() == 0){
