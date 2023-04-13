@@ -88,9 +88,6 @@ public class MultiplexController {
     @GetMapping("/deleteMultiplex")
     public String deleteMultiplex(@RequestParam("multiplex_id") int multiplexId) {
 
-        Multiplex tempMultiplex = multiplexService.findMultiplexById(multiplexId);
-
-
         multiplexService.deleteMultiplexById(multiplexId);
 
         return "redirect:/multiplex/list";
