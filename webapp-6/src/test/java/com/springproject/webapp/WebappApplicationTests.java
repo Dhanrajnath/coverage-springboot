@@ -1,4 +1,4 @@
-package com.springproject.webapp.dao;
+package com.springproject.webapp;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

@@ -1,0 +1,177 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > MovieServiceImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.springproject.webapp.service</a>
+</div>
+
+<h1>Coverage Summary for Class: MovieServiceImpl (com.springproject.webapp.service)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MovieServiceImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (16/16)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">MovieServiceImpl$$EnhancerBySpringCGLIB$$59d750ac</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (16/16)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.springproject.webapp.service;
+&nbsp;
+&nbsp;import com.springproject.webapp.converter.MovieConverter;
+&nbsp;import com.springproject.webapp.dao.MovieJpaRepository;
+&nbsp;import com.springproject.webapp.dto.MovieDTO;
+&nbsp;import com.springproject.webapp.entity.Movie;
+&nbsp;import com.springproject.webapp.exception.movie.MovieNotFoundException;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;@Service
+&nbsp;public class MovieServiceImpl implements MovieService{
+&nbsp;
+&nbsp;    private MovieJpaRepository movieJpaRepository;
+&nbsp;
+&nbsp;    private MovieConverter converter;
+&nbsp;
+&nbsp;    @Autowired
+<b class="fc">&nbsp;    public MovieServiceImpl(MovieJpaRepository movieJpaRepository, MovieConverter movieConverter) {</b>
+<b class="fc">&nbsp;        this.movieJpaRepository = movieJpaRepository;</b>
+<b class="fc">&nbsp;        this.converter = movieConverter;</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Movie&gt; findAllMovies() {
+<b class="fc">&nbsp;        return movieJpaRepository.findAll();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public MovieDTO findMovieById(int theId) {
+<b class="fc">&nbsp;        Optional&lt;Movie&gt; result = movieJpaRepository.findById(theId);</b>
+<b class="fc">&nbsp;        MovieConverter movieConverter = new MovieConverter();</b>
+<b class="fc">&nbsp;        Movie theMovie =null;</b>
+&nbsp;
+<b class="fc">&nbsp;        if (result.isPresent()){</b>
+<b class="fc">&nbsp;            theMovie = result.get();</b>
+&nbsp;        }
+&nbsp;        else {
+&nbsp;            // Exception
+<b class="fc">&nbsp;            throw new MovieNotFoundException(&quot;Did not find movie with id - &quot;+ theId);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return movieConverter.entityToDto(theMovie);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void saveMovie(MovieDTO theMovieDto) {
+<b class="fc">&nbsp;        Movie theMovie = converter.dtoToEntity(theMovieDto);</b>
+<b class="fc">&nbsp;        Movie tempMovie = movieJpaRepository.findByMovieTitle(theMovie.getMovieTitle());</b>
+<b class="fc">&nbsp;        if (tempMovie != null &amp;&amp; theMovie.getIdMovie() == 0){</b>
+&nbsp;            return ;
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        movieJpaRepository.save(theMovie);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void deleteMovieById(int theId) {
+<b class="fc">&nbsp;        movieJpaRepository.deleteById(theId);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-13 18:03</div>
+</div>
+</body>
+</html>
